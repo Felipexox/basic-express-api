@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     unique: false
   }
 });
-UserSchema.pre('save', async function(next){
+userSchema.pre('save', async function(next){
   const hash = await bcrypt.hash(this.password,10);
   this.password =hash;
   next();
@@ -28,12 +28,16 @@ UserSchema.pre('save', async function(next){
 
 userSchema.statics.existsAccountLogin = async function(login, pwd) {
   let user = await this.findOne({
-    username: login,
-    password: pwd
+    username: login
   });
 
   if (!user) {
-    user = await this.findOne({ email: login });
+    return res.status(400);
+  }
+
+  if(!await bcrypt.compare(password, user.password)){
+    console.log(password, user.password)
+    return res.status(400).send({error: "Senha Invalida"});
   }
 
   return user;
