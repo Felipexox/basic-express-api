@@ -5,13 +5,15 @@ import models, { connectDb } from '../models/index.mjs';
 const router = Router();
 
 router.get('/', async (req, res) => {
+    console.log("MULT ELEMENT")
    const posts = await req.context.models.Post.find();
    return res.send(posts);
 });
 
-router.get('/post/:title', async (req, res) => {
+router.get('/:titleId', async (req, res) => {
+    console.log("SINGLE ELEMENT")
   const post = await req.context.models.Post.findByTitle(
-    req.params.title,
+    req.params.titleId,
   );
   return res.send(post);
 });
