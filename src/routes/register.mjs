@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import models, { connectDb } from '../models';
+import models, { connectDb } from '../models/index.mjs';
 
 const router = Router();
 

@@ -1,9 +1,11 @@
-require("dotenv").config()
-const express = require('express');
-const cors = require('cors')
-const routes = require('./routes.js');
-const bodyParser = require('body-parser')
+import dotenv from "dotenv"
+import express from 'express';
+import cors from 'cors';
+import models, { connectDb } from './models/index.mjs';
+import routes from './routes/index.mjs';
+import bodyParser from 'body-parser'
 
+dotenv.config()
 
 const app = express();
 
