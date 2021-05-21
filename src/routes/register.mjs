@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import models, { connectDb } from '../models/index.mjs';
 
+import crypto from 'crypto';
+
 const router = Router();
 
 router.post('/', async (req, res) => {
@@ -13,7 +15,7 @@ router.post('/', async (req, res) => {
     let user = new models.User({
         username: email,
         password: pwd,
-        token: require('crypto').randomBytes(64).toString('hex')
+        token: crypto.randomBytes(64).toString('hex')
         });
 
     await user.save();
