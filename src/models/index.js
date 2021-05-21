@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 
-import User from './user';
+var User = require('./user.js');
 
 
 const connectDb = () => {

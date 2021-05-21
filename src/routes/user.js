@@ -1,4 +1,4 @@
-import { Router } from 'express';
+var Router =  require('express').Router;
 
 const router = Router();
 
