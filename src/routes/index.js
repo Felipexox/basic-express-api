@@ -6,7 +6,6 @@ import login from './login';
 export default {
   session,
   user,
-  message,
   register,
   login
 };
