@@ -1,8 +1,8 @@
 import dotenv from "dotenv"
 import express from 'express';
 import cors from 'cors';
-import models, { connectDb } from './models/index.mjs';
-import routes from './routes/index.mjs';
+import models, { connectDb } from './models';
+import routes from './routes';
 import bodyParser from 'body-parser'
 
 dotenv.config()
