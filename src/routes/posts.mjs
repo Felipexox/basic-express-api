@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
    return res.send(posts);
 });
 
-router.get('/:title', async (req, res) => {
+router.get('/post/:title', async (req, res) => {
   const post = await req.context.models.Post.findByTitle(
     req.params.title,
   );
