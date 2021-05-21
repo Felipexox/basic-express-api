@@ -1,11 +1,10 @@
-import dotenv  from "dotenv"
 import express from 'express';
 const cors = require('cors')
 import models, { connectDb } from './models';
 import routes from './routes';
 import bodyParser from 'body-parser'
 
-dotenv.config();
+
 const app = express();
 
 // * Application-Level Middleware * //
