@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -9,11 +10,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     unique: false,
   },
+  admin: {
+    type: Boolean,
+    default: false,
+    unique: false
+  },
   token: {
     type: String,
     unique: false
   }
 });
+UserSchema.pre('save', async function(next){
+  const hash = await bcrypt.hash(this.password,10);
+  this.password =hash;
+  next();
+});
+
 userSchema.statics.existsAccountLogin = async function(login, pwd) {
   let user = await this.findOne({
     username: login,
@@ -26,6 +38,7 @@ userSchema.statics.existsAccountLogin = async function(login, pwd) {
 
   return user;
 };
+
 
 userSchema.statics.findByLogin = async function(login) {
   let user = await this.findOne({
