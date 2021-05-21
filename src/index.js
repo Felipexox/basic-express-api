@@ -1,9 +1,10 @@
-
+require("dotenv").config()
 import express from 'express';
 const cors = require('cors')
 import models, { connectDb } from './models';
 import routes from './routes';
 import bodyParser from 'body-parser'
+
 
 const app = express();
 
