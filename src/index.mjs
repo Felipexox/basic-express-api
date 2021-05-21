@@ -45,17 +45,17 @@ app.use('/login', routes.login);
 
 const eraseDatabaseOnSync = true;
 
-// connectDb().then(async () => {
-//   if (eraseDatabaseOnSync) {
-//     await Promise.all([
-//       models.User.deleteMany({}),
-//       models.Message.deleteMany({}),
-//     ]);
+connectDb().then(async () => {
+  if (eraseDatabaseOnSync) {
+    await Promise.all([
+      models.User.deleteMany({}),
+      models.Message.deleteMany({}),
+    ]);
 
-//   }
+  }
 
   app.listen(process.env.PORT || 8080, () =>
     console.log(`Example app listening on port ${process.env.PORT}!`),
   );
-// });
+});
 
