@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:title', async (req, res) => {
-  const post = await req.context.models.Post.findById(
+  const post = await req.context.models.Post.findByTitle(
     req.params.title,
   );
   return res.send(post);
