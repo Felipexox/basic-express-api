@@ -2,20 +2,7 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.get('/', async (req, res) => {
-   const posts = await req.context.models.Post.find();
-   return res.send(posts);
-});
-
-router.get('/:title', async (req, res) => {
-  const post = await req.context.models.Post.findById(
-    req.params.title,
-  );
-  return res.send(post);
-});
-
-
-router.post('/register/', async (req, res) => {
+router.post('/', async (req, res) => {
     let title = req.body.title;
     let desc = req.body.desc;
 
