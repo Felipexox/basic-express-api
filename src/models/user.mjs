@@ -40,7 +40,7 @@ userSchema.statics.existsAccountLogin = async function(login, pwd) {
     return res.status(400).send({error: "Senha Invalida"});
   }
 
-  return res.send(user);
+  return user;
 };
 
 
