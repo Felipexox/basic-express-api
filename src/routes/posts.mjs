@@ -12,8 +12,9 @@ router.get('/', async (req, res) => {
 
 router.get('/:titleId', async (req, res) => {
     console.log("SINGLE ELEMENT")
+    console.log(JSON.stringify(req.params))
   const post = await req.context.models.Post.findByTitle(
-    req.params.titleId,
+    req.params.titleId
   );
   return res.send(post);
 });
