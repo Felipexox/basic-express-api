@@ -23,6 +23,7 @@ router.get('/:titleId', async (req, res) => {
 router.post('/register/', async (req, res) => {
     let title = req.body.title;
     let desc = req.body.desc;
+    let image = req.body.image;
 
     console.log("Save post title: " + title);
     
@@ -30,6 +31,7 @@ router.post('/register/', async (req, res) => {
         let post = new models.Post({
             title: title,
             description: desc,
+            image: image
             });
 
         await post.save();
