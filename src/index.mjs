@@ -5,21 +5,23 @@ import models, { connectDb } from './models/index.mjs';
 import routes from './routes/index.mjs';
 import bodyParser from 'body-parser'
 import { createServer } from "http";
-import { Server } from "socket.io";
+import {Server} from "socket.io";
+
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
-  // ...
+ 
 });
 
 io.on("connection", (socket) => {
-  // ...
+  console.log("FDP");
 });
-
-httpServer.listen(process.env.PORT);
 
 dotenv.config()
 const app = express();
+
+
+httpServer.listen(process.env.PORT || 3000);
 
 // Built-In Middleware
 app.use(bodyParser.json())
@@ -53,7 +55,7 @@ const eraseDatabaseOnSync = true;
 
 connectDb().then(async () => {
 
-  app.listen(process.env.PORT || 8080, () =>
+  app.listen(8080, () =>
     console.log(`App listening on port ${process.env.PORT}!`),
   );
 });
