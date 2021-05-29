@@ -25,14 +25,12 @@ app.use(express.urlencoded({ extended: true }));
 
 // Custom Middleware
 //allow OPTIONS on all resources
-app.user(cors())
+
+app.use(cors())
+
 
 app.use(async (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
+
   req.context = {
     models
   };

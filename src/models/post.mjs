@@ -9,6 +9,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     unique: false,
   },
+  image : {
+    type: String,
+    unique: false
+  }
 });
 
 
