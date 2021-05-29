@@ -4,17 +4,19 @@ import cors from 'cors';
 import models, { connectDb } from './models/index.mjs';
 import routes from './routes/index.mjs';
 import bodyParser from 'body-parser'
+import { createServer } from "http";
 import { Server } from "socket.io";
-import { createServer } from 'http';
 
-const server = createServer(app); 
-const io = new Server(server);
-
-io.on('connection', client => {
-  client.on('event', data => { /* … */ });
-  client.on('disconnect', () => { /* … */ });
+const httpServer = createServer();
+const io = new Server(httpServer, {
+  // ...
 });
-server.listen(process.env.PORT);
+
+io.on("connection", (socket) => {
+  // ...
+});
+
+httpServer.listen(process.env.PORT);
 
 dotenv.config()
 const app = express();
