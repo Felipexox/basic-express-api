@@ -4,6 +4,17 @@ import cors from 'cors';
 import models, { connectDb } from './models/index.mjs';
 import routes from './routes/index.mjs';
 import bodyParser from 'body-parser'
+import { Server } from "socket.io";
+import { createServer } from 'http';
+
+const server = createServer(app); 
+const io = new Server(server);
+
+io.on('connection', client => {
+  client.on('event', data => { /* … */ });
+  client.on('disconnect', () => { /* … */ });
+});
+server.listen(process.env.PORT);
 
 dotenv.config()
 const app = express();
@@ -14,7 +25,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Custom Middleware
 //allow OPTIONS on all resources
-app.options('*', cors())
+app.user(cors())
 
 app.use(async (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
